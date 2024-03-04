@@ -1,20 +1,14 @@
 #!/usr/bin/python3
-"""Defines class BaseGeometry."""
+
+""" Define Geometry module """
+BaseGeometry = __import__('7-base_geometry').BaseGeometry
 
 
-class BaseGeometry:
-    """Class body."""
+class Rectangle(BaseGeometry):
+    """ Rectangle body """
 
-    def area(self):
-        """Not implemented."""
-        raise Exception("area() is not implemented")
-
-    def integer_validator(self, name, value):
-        """Validate a parameter format.
-            TypeError: If value is not an integer.
-            ValueError: If value is <= 0.
-        """
-        if type(value) != int:
-            raise TypeError("{} must be an integer".format(name))
-        if value <= 0:
-            raise ValueError("{} must be greater than 0".format(name))
+    def __init__(self, width, height):
+        super().integer_validator("width", width)
+        super().integer_validator("height", height)
+        self.__width = width
+        self.__height = height
