@@ -1,13 +1,11 @@
 #!/usr/bin/python3
 """Rectangle class implement Base class """
 
-
 from models.base import Base
 
 
 class Rectangle(Base):
-    """ rectangle class implement Base class
-    """
+    """ rectangle class implement Base class """
 
     def __init__(self, width, height, x=0, y=0, id=None):
         self.width = width
@@ -98,7 +96,7 @@ class Rectangle(Base):
         """
         if len(args) == 0:
             for key, val in kwargs.items():
-                self.__setattr__(key, val)
+                setattr(self, key, val)
             return
         try:
             self.id = args[0]
@@ -113,15 +111,15 @@ class Rectangle(Base):
         """
             Returns a dictionary representation of this class
         """
-        return {'x': getattr(self, "x"),
-                'y': getattr(self, "y"),
-                'id': getattr(self, "id"),
-                'height': getattr(self, "height"),
-                'width': getattr(self, "width")}
+        return {'x': self.x,
+                'y': self.y,
+                'id': self.id,
+                'height': self.height,
+                'width': self.width}
 
     @staticmethod
     def setter_validation(attribute, value):
-        if type(value) != int:
+        if not isinstance(value, int):
             raise TypeError("{} must be an integer".format(attribute))
         if attribute == "x" or attribute == "y":
             if value < 0:
@@ -132,3 +130,4 @@ class Rectangle(Base):
     def __str__(self):
         return "[Rectangle] ({}) {}/{} - {}/{}".format(self.id, self.x, self.y,
                                                        self.width, self.height)
+
